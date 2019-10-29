@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:add="http://example.net/xsd/additional"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://example.net/xsd/additional
+       http://example.net/xsd/additional.xsd">
+
+    <bean id="thirdService" class="net.example.api.ThirdServiceImpl"/>
+
+    <bean id="mainService" class="net.example.MainServiceImpl">
+        <constructor-arg name="additionalService" ref="additionalServiceBean"/>
+        <constructor-arg name="thirdService" ref="thirdService"/>
+    </bean>
+
+    <!-- Here is contract with xsd-->
+    <add:additionalService id="additionalServiceBean">
+        <add:thirdService name="thirdService" ref="thirdService"/>
+    </add:additionalService>
+</beans>

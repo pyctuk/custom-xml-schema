@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://example.net/xsd/additional"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://example.net/xsd/additional"
+            elementFormDefault="qualified">
+
+    <xsd:element name="additionalService"
+                 type="add:additionalServiceType" xmlns:add="http://example.net/xsd/additional"/>
+    <xsd:complexType name="apiServiceType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute type="xsd:string" name="name" use="required"/>
+                <xsd:attribute type="xsd:string" name="ref" use="required"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="additionalServiceType">
+        <xsd:sequence>
+            <xsd:element type="add:apiServiceType" name="thirdService" xmlns:add="http://example.net/xsd/additional"/>
+        </xsd:sequence>
+        <xsd:attribute type="xsd:string" name="id" use="required"/>
+    </xsd:complexType>
+</xsd:schema>
